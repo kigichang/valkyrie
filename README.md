@@ -30,15 +30,18 @@ Requires Go 1.27 or later (generic methods).
 | `Either[L, R]` | [`either`](./either) | Scala `Either` | A value that is one of two types; right-biased, for a success/alternate pair not tied to `error`. |
 | `Tuple2`/`Tuple3`/`Tuple4` | [`tuple`](./tuple) | — | Fixed-arity generic structs for grouping 2–4 values without a named type. |
 | `Pair[K, V]` | [`pair`](./pair) | — | A key-value element, e.g. the element type of a hash map. |
+| `Future[T]` | [`future`](./future) | Scala `Future` | A value produced asynchronously on its own goroutine, with `Map`/`FlatMap`/`Recover`/`Zip`-style combinators. |
 
 Every type is immutable, comparison-friendly where its contents allow, and
-implements `fmt.Stringer`.
+implements `fmt.Stringer` — except `Future[T]`, which is inherently mutable
+(it starts pending and completes once) and is always used through a
+`*Future[T]` pointer rather than copied.
 
 The root package (`github.com/kigichang/valkyrie`) re-exports `Option`,
-`Result`, and `Either` as type aliases with their constructors, so you can
-`import "github.com/kigichang/valkyrie"` and write `valkyrie.Some(v)` instead
-of importing each subpackage individually. `Tuple` and `Pair` are imported
-from their own subpackages (`tuple`, `pair`).
+`Result`, `Either`, and `Future` as type aliases with their constructors, so
+you can `import "github.com/kigichang/valkyrie"` and write `valkyrie.Some(v)`
+instead of importing each subpackage individually. `Tuple` and `Pair` are
+imported from their own subpackages (`tuple`, `pair`).
 
 ## Example
 
