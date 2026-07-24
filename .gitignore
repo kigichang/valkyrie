@@ -1,0 +1,17 @@
+# macOS system files
+.DS_Store
+
+# Windows system files
+Thumbs.db
+
+# VS Code settings
+.vscode/
+
+# IntelliJ / WebStorm / PyCharm
+.idea/
+
+# Log files
+*.log
+
+# Claude
+.claude/
